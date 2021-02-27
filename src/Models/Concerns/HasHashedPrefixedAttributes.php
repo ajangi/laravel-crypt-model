@@ -13,7 +13,7 @@ trait HasHashedPrefixedAttributes
 {
     public static function bootHasHashedPrefixedAttributes()
     {
-        static::creating(function (Model $model){
+        static::booting(function (Model $model){
             $attribute_prefix = config('laravel-crypt-model.model_new_attribute_prefix');
             $registered_prefixes = static::getModelRegisteredPrefixes();
             foreach ($registered_prefixes as $prefix => $item){
