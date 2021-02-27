@@ -1,0 +1,22 @@
+{
+    "name": "ajangi/laravel-crypt-model",
+    "description": "Encoding and Decoding larave model atributes made easy.",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Alireza Jangi",
+            "email": "ajangi@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "LaravelCryptModel\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0.0",
+        "ext-json": "*"
+    }
+}
