@@ -1,6 +1,6 @@
 {
     "name": "ajangi/laravel-crypt-model",
-    "description": "Encoding and Decoding larave model atributes made easy.",
+    "description": "Encoding and Decoding larave model attributes made easy.",
     "type": "library",
     "license": "MIT",
     "minimum-stability": "dev",
@@ -16,7 +16,18 @@
         }
     },
     "require": {
-        "php": ">=7.0.0",
-        "ext-json": "*"
+        "php": ">=7.1.0",
+        "facade/ignition-contracts": "^1.0",
+        "illuminate/contracts": "^8.0",
+        "ext-json": "*",
+        "illuminate/database": "8.x-dev",
+      "ext-mcrypt": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelCryptModel\\LaravelCryptoModelServiceProvider"
+            ]
+        }
     }
 }
