@@ -3,7 +3,6 @@
 
 namespace LaravelCryptModel;
 
-use Illuminate\Database\Eloquent\Model;
 use LaravelCryptModel\Exceptions\PrefixNotFoundForModel;
 use LaravelCryptModel\Exceptions\RegisteredModelsNotStructured;
 use LaravelCryptModel\Logger\LaravelCryptLogger;
@@ -89,25 +88,14 @@ class PrefixedAttributes
     }
 
     /**
-     * @param string $prefixedAttribute
-     * @return Model|null
-     */
-    public static function findByAttribute(string $prefixedAttribute): ?Model
-    {
-        if (! $modelClass = static::getModelClass($prefixedAttribute)) {
-            return null;
-        }
-        return $modelClass::findByPrefixedAttribute($prefixedAttribute);
-    }
-
-    /**
      * @param string $prefix
      * @param string $modelName
      * @return string|string[]
      */
     public static function getAttributeByPrefixAndModelName(string $prefix, string $modelName)
     {
+        $attrPrefix = config('laravel-crypt-model.model_new_attribute_prefix');
+        $prefix = str_replace($attrPrefix,'',$prefix);
         return (str_replace('_','',str_replace($modelName,'',$prefix)));
     }
-
 }
