@@ -44,7 +44,16 @@ Typically, you would put the code above in a service provider.
 php artisan vendor:publish
 ```
 then select ajangi/laravel-crypt-model to push config file. After publishing the file ``` config/laravel-crypt-model.php ``` will be added.
+```php
+<?php
 
+return [
+    'model_new_attribute_prefix' => 'hashed_',
+    'aes_secret_key' => env('AES_SECRET_KEY','6818f23eef19d38dad1d272345454549991f6368'),
+    'aes_secret_iv' => env('AES_SECRET_IV','73658734657823465872364587634876523487657'),
+];
+
+```
 #### 3- Preparing your models
 
 On each model that needs a hashed prefixed attribute, you should use the LaravelCryptModel\Models\Concerns\HasHashedPrefixedAttributes trait.
