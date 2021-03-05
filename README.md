@@ -38,3 +38,21 @@ PrefixedAttributes::registerModels([
     ]);
 ```
 Typically, you would put the code above in a service provider.
+
+#### 2- Preparing your models
+
+On each model that needs a hashed prefixed attribute, you should use the use LaravelCryptModel\Models\Concerns\HasHashedPrefixedAttributes trait.
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use LaravelCryptModel\Models\Concerns\HasHashedPrefixedAttributes;
+
+class User extends Model
+{
+    use HasFactory,Notifiable, HasHashedPrefixedAttributes;
+}
+```
