@@ -4,6 +4,9 @@
 namespace LaravelCryptModel\Encode;
 
 
+use LaravelCryptModel\Exceptions\AesEncryptionException;
+use LaravelCryptModel\Logger\LaravelCryptLogger;
+
 class LaravelCryptEncoder
 {
     protected  $key;
@@ -16,10 +19,9 @@ class LaravelCryptEncoder
      */
     public function __construct()
     {
-        $this->setKey(config('laravel-crypt-model.aes_secret_key'));
-        $this->setIV();
         $this->setCipher();
-        $this->setMode();
+        $this->setKey(config('laravel-crypt-model.aes_secret_key'));
+        $this->setIV(config('laravel-crypt-model.aes_secret_iv'));
     }
 
     /**
@@ -35,6 +37,8 @@ class LaravelCryptEncoder
      */
     private function setKey($key): void
     {
+        $key = config('laravel-crypt-model.aes_secret_key');
+        $key = hash('sha256', $key);
         $this->key = $key;
     }
 
@@ -48,20 +52,7 @@ class LaravelCryptEncoder
 
     private function setCipher(): void
     {
-        $this->cipher = MCRYPT_RIJNDAEL_128;
-    }
-
-    /**
-     * @return mixed
-     */
-    private function getMode()
-    {
-        return $this->mode;
-    }
-
-    private function setMode(): void
-    {
-        $this->mode = MCRYPT_MODE_CBC;
+        $this->cipher = 'AES-256-CBC';
     }
 
     /**
@@ -72,28 +63,48 @@ class LaravelCryptEncoder
         return $this->IV;
     }
 
-    private function setIV(): void
+    private function setIV($iv): void
     {
-        $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
-        $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+        $iv = substr(hash('sha256', $iv), 0, 16);
         $this->IV = $iv;
     }
 
     /**
      * @param $decrypted
      * @return string
+     * @throws AesEncryptionException
      */
     public function encrypt($decrypted): string
     {
-        return base64_encode(mcrypt_encrypt($this->getCipher(), $this->getKey(), 1234 , $this->getMode(), $this->getIV()));
+        try {
+            $result =  openssl_encrypt($decrypted, $this->getCipher(), $this->getKey() , 0, $this->getIV(), $tag);
+        }catch (AesEncryptionException $exception){
+            LaravelCryptLogger::makeExceptionLog($exception);
+            throw AesEncryptionException::make();
+        }
+        if ($result === false){
+            throw AesEncryptionException::make();
+        }
+        return $result;
     }
 
     /**
      * @param $encrypted
      * @return string
+     * @throws AesEncryptionException
      */
     public function decrypt($encrypted): string
     {
-        return mcrypt_decrypt($this->getCipher(), $this->getKey(), base64_decode($encrypted), $this->getMode(), $this->getIV());
+        $tag = "";
+        try {
+            $result =  openssl_decrypt($encrypted, $this->getCipher(), $this->getKey(), $options=0, $this->getIV(), $tag);
+        }catch (AesEncryptionException $exception){
+            LaravelCryptLogger::makeExceptionLog($exception);
+            throw AesEncryptionException::make();
+        }
+        if ($result === false){
+            throw AesEncryptionException::make();
+        }
+        return $result;
     }
 }

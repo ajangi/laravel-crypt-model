@@ -3,6 +3,9 @@
 
 namespace LaravelCryptModel;
 
+use ErrorException;
+use LaravelCryptModel\Encode\LaravelCryptEncoder;
+use LaravelCryptModel\Exceptions\ModelNotFoundForPrefix;
 use LaravelCryptModel\Exceptions\PrefixNotFoundForModel;
 use LaravelCryptModel\Exceptions\RegisteredModelsNotStructured;
 use LaravelCryptModel\Logger\LaravelCryptLogger;
@@ -97,5 +100,28 @@ class PrefixedAttributes
         $attrPrefix = config('laravel-crypt-model.model_new_attribute_prefix');
         $prefix = str_replace($attrPrefix,'',$prefix);
         return (str_replace('_','',str_replace($modelName,'',$prefix)));
+    }
+
+    /**
+     * @param string $hashedPrefixedAttributeValue
+     * @return mixed
+     * @throws Exceptions\AesEncryptionException
+     * @throws ModelNotFoundForPrefix
+     */
+    public static function findModel(string $hashedPrefixedAttributeValue)
+    {
+        $attribute_prefix = config('laravel-crypt-model.model_new_attribute_prefix');
+        $length = strpos($hashedPrefixedAttributeValue,$attribute_prefix);
+        $prefix = substr($hashedPrefixedAttributeValue,0,$length);
+        try {
+            $model = PrefixedAttributes::$registeredModels[$prefix]['model'];
+        }catch (ErrorException $exception){
+            LaravelCryptLogger::makeExceptionLog($exception);
+            throw ModelNotFoundForPrefix::make($prefix);
+        }catch (ModelNotFoundForPrefix $exception){
+            LaravelCryptLogger::makeExceptionLog($exception);
+            throw ModelNotFoundForPrefix::make($prefix);
+        }
+        return $model::findByPrefixedAttribute($hashedPrefixedAttributeValue);
     }
 }
