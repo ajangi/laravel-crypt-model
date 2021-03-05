@@ -28,7 +28,7 @@ class RegisteredModelsNotStructured extends Exception implements ProvidesSolutio
            ->setSolutionDescription('Check the array you want to register as model 
            according to documentations')
            ->setDocumentationLinks([
-               'Documentation' => 'https://github.com/spatie/laravel-prefixed-ids#registering-models-with-prefixed-ids', // todo : Change it
+               'Documentation' => 'https://github.com/ajangi/laravel-crypt-model',
            ]);
     }
 

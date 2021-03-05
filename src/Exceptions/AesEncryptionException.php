@@ -23,7 +23,7 @@ class AesEncryptionException extends Exception implements ProvidesSolution
         return BaseSolution::create('Check documentation!')
             ->setSolutionDescription('Check the documentation and config file!')
             ->setDocumentationLinks([
-                'Documentation' => 'https://github.com/spatie/laravel-prefixed-ids#registering-models-with-prefixed-ids', // todo : Change it
+                'Documentation' => 'https://github.com/ajangi/laravel-crypt-model',
             ]);
     }
 }
