@@ -39,7 +39,13 @@ PrefixedAttributes::registerModels([
 ```
 Typically, you would put the code above in a service provider.
 
-#### 2- Preparing your models
+#### 2- Publish config file
+```bash
+php artisan vendor:publish
+```
+then select ajangi/laravel-crypt-model to push config file. After publishing the file ``` config/laravel-crypt-model.php ``` will be added.
+
+#### 3- Preparing your models
 
 On each model that needs a hashed prefixed attribute, you should use the LaravelCryptModel\Models\Concerns\HasHashedPrefixedAttributes trait.
 ```php
