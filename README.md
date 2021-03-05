@@ -73,7 +73,7 @@ class User extends Model
 ```
 
 #### 4- Getting model with prefixed hashed attributes appended to it
-```
+```php
 <?php
 use App\Models\User;
 
