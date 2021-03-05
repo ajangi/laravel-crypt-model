@@ -21,7 +21,8 @@
         "illuminate/contracts": "^8.0",
         "ext-json": "*",
         "illuminate/database": "8.x-dev",
-      "ext-mcrypt": "*"
+        "ext-mcrypt": "*",
+        "ext-openssl": "*"
     },
     "extra": {
         "laravel": {
