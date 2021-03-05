@@ -18,3 +18,23 @@ composer require ajangi/laravel-crypt-model
 ```
 
 ### Hot to use?
+
+#### 1- Register your models
+To register your models, you should pass the desired prefix and the class name of your model to.
+```php
+<?php
+
+use LaravelCryptModel\PrefixedAttributes;
+
+PrefixedAttributes::registerModels([
+        'user' => [
+            'model' => \App\Models\User::class,
+            'attributes' => ['id','avatar_file_id']
+        ],
+        'Order' => [
+            'model' => \App\Models\Oredr::class,
+            'attributes' => ['id','customer_user_id']
+        ]
+    ]);
+```
+Typically, you would put the code above in a service provider.
