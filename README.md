@@ -96,10 +96,28 @@ the above code will return :
 ```
 #### 5- Get model using prefixed hashed attribute
 To get model using prefixed hashed attribute you can try two methods : 
-##### a. using model
+##### a. using model :
 ```php
 use App\Models\User;
 $user = User::findByPrefixedAttribute('user_id_hashed_7QOG8YaqVQigyD0sYEd25A=='); // the prefixed hashed value we get in step 4
+return json_encode($user);
+```
+the above code will return :
+```json
+{
+  "id": 1,
+  "name": "Alireza",
+  "family": "Jangi",
+  "mobile": "09393563537",
+  "created_at": null,
+  "updated_at": null,
+  "user_id_hashed_": "user_id_hashed_7QOG8YaqVQigyD0sYEd25A==",
+}
+```
+##### b. using ``` LaravelCryptModel\PrefixedAttributes ``` :
+```php
+use LaravelCryptModel\PrefixedAttributes;
+$user = PrefixedAttributes::findModel('user_id_hashed_7QOG8YaqVQigyD0sYEd25A=='); // the prefixed hashed value we get in step 4
 return json_encode($user);
 ```
 the above code will return :
