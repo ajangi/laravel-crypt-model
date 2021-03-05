@@ -37,7 +37,6 @@ class LaravelCryptEncoder
      */
     private function setKey($key): void
     {
-        $key = config('laravel-crypt-model.aes_secret_key');
         $key = hash('sha256', $key);
         $this->key = $key;
     }

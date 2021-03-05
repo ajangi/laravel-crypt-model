@@ -1,6 +1,6 @@
 {
     "name": "ajangi/laravel-crypt-model",
-    "description": "Encoding and Decoding larave model attributes made easy.",
+    "description": "Encoding and Decoding laravel model attributes made easy.",
     "type": "library",
     "license": "MIT",
     "minimum-stability": "dev",
