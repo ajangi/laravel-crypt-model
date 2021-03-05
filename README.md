@@ -41,7 +41,7 @@ Typically, you would put the code above in a service provider.
 
 #### 2- Preparing your models
 
-On each model that needs a hashed prefixed attribute, you should use the use LaravelCryptModel\Models\Concerns\HasHashedPrefixedAttributes trait.
+On each model that needs a hashed prefixed attribute, you should use the LaravelCryptModel\Models\Concerns\HasHashedPrefixedAttributes trait.
 ```php
 <?php
 
