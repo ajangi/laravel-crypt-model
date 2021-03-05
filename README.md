@@ -71,3 +71,26 @@ class User extends Model
     use HasFactory,Notifiable, HasHashedPrefixedAttributes;
 }
 ```
+
+#### 4- Getting model with prefixed hashed attributes
+```
+<?php
+use App\Models\User;
+
+$user = User::query()
+        ->where('name','Alireza')
+        ->first();
+return json_encode($user);
+```
+the above code will return :
+```json
+{
+  "id": 1,
+  "name": "Alireza",
+  "family": "Jangi",
+  "mobile": "09393563537",
+  "created_at": null,
+  "updated_at": null,
+  "user_id_hashed_": "user_id_hashed_7QOG8YaqVQigyD0sYEd25A==", // This is only an example
+}
+```
