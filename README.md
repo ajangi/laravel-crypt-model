@@ -91,6 +91,6 @@ the above code will return :
   "mobile": "09393563537",
   "created_at": null,
   "updated_at": null,
-  "user_id_hashed_": "user_id_hashed_7QOG8YaqVQigyD0sYEd25A==", // This is only an example
+  "user_id_hashed_": "user_id_hashed_7QOG8YaqVQigyD0sYEd25A==",
 }
 ```
