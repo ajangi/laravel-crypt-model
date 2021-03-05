@@ -8,3 +8,13 @@
 
 # Laravel-Crypt-Model
 Encoding and Decoding laravel model attributes made easy.
+
+### Requirements
+- minimum php version : 7.1.0
+
+### Installation
+```bash
+composer require ajangi/laravel-crypt-model
+```
+
+### Hot to use?
