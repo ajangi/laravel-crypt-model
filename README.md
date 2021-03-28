@@ -41,7 +41,7 @@ Typically, you would put the code above in a service provider.
 
 #### 2- Publish config file
 ```bash
-php artisan vendor:publish --provider="LaravelCryptModel\LaravelCryptoModelServiceProvider" --tag="laravel-crypt-model"
+php artisan vendor:publish --provider="LaravelCryptModel\LaravelCryptoModelServiceProvider"
 ```
 then select ajangi/laravel-crypt-model to push config file. After publishing the file ``` config/laravel-crypt-model.php ``` will be added.
 ```php
