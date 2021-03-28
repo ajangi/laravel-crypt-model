@@ -4,6 +4,7 @@
     "type": "library",
     "license": "MIT",
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "authors": [
         {
             "name": "Alireza Jangi",
@@ -20,7 +21,7 @@
         "facade/ignition-contracts": "^1.0",
         "illuminate/contracts": "^8.0",
         "ext-json": "*",
-        "illuminate/database": "8.x-dev",
+        "illuminate/database": "^8.0",
         "ext-mcrypt": "*",
         "ext-openssl": "*"
     },
