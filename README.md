@@ -132,3 +132,5 @@ the above code will return :
   "user_id_hashed_": "user_id_hashed_7QOG8YaqVQigyD0sYEd25A==",
 }
 ```
+### Contributing 
+Take a look at [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
