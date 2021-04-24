@@ -133,4 +133,4 @@ the above code will return :
 }
 ```
 ### Contributing 
-Take a look at [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+Take a look at [CONTRIBUTING](CONTRIBUTING.md) for details.
